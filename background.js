@@ -92,7 +92,6 @@ function addButtons(coord = null, syscodeGeo = null, syscodeFirm = null, moveToF
     };
 
     
-
     if (syscodeFirm) {
         objTapUser.append(irLink);
         var objIrLink = document.getElementsByClassName("inforussia-link")[0];
