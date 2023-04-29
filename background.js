@@ -91,6 +91,7 @@ function addButtons(coord = null, syscodeGeo = null, syscodeFirm = null, moveToF
         fijiSysCode.remove();
     };
 
+    
 
     if (syscodeFirm) {
         objTapUser.append(irLink);
