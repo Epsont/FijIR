@@ -1,5 +1,6 @@
 body {
     color: azure;
+    background-image: url(icons/background.png);
     background-color: black;
     text-align:center;
     width:200px;
@@ -14,19 +15,4 @@ button {
     padding:5px;
     font-weight: bold;
     cursor:pointer;
-}
-
-.fiji-link {
-    width:200px;
-    height:40px;
-    border: #00BFFF;
-    overflow: hidden;
-    padding: 4px;
-    border-radius: 4px;
-    box-shadow: 0 1px 3px 0 rgba(38, 38, 38, 0.5);
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    background: #ffffff;
-    color: #262626;
-    float:left;
 }
