@@ -126,8 +126,7 @@ function hrefHandler() {
             that.oldhref = window.location.href;
             url = window.location.href;
             fijIR(url, oldSysCode);
-            
-        }
+        };
     };
     this.Check = setInterval(function(){ detect() }, 500);
 }
@@ -143,12 +142,20 @@ function fijIR() {
 
 
     // console.log(syscodeGeo);
-
     // console.log(`ссылка: ${url}`);
     // console.log(`найденные координаты: ${coord}`);
+    // console.log(typeof coord);
     // console.log(`найденный сискод Fiji: ${syscode}`);
     // console.log('передача переменных функции замены кнопок');
-    //console.log(syscodeGeo);
+    // console.log(syscodeGeo);
+    if (coord.length > 4) {
+        // console.log(coord.length);
+        // console.log(coord);
+        // console.log("8 сущностей");
+        coord = coord.slice(-4);
+        // console.log(coord);
+    };
+    
 
     var moveToFiji = `<a href="fiji://view/lon=${coord[0]}&lat=${coord[1]}" title="Перейти в Fiji по координатам"><img width="32" height="32" src="https://youla.2gis.local/assets/img/fiji%20small.png"></a>`;
     if (syscodeGeo) {
