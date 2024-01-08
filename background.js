@@ -16,8 +16,8 @@ let newSysCode;
 
 
 //ДОБАВЛЕНИЕ ОБЩЕЙ ПАНЕЛИ
-var objLink = document.getElementsByClassName("_hggo10")[0];
-// var objLink = document.getElementsByClassName("_osua8z");
+// var objLink = document.getElementsByClassName("_hggo10")[0];
+var objLink = document.getElementsByClassName("_1kswsxpb")[0];
 console.log(objLink);
 const links = document.createElement('div');
 links.setAttribute("class", "link-under-the-coord");
