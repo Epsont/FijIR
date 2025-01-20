@@ -3,7 +3,7 @@
   "short_name": "FI",
   "description": "Added button Fiji and IR",
   "author": "Epsont (Ilya Akhmanov) 2GIS company",
-  "version": "1.4",
+  "version": "1.5",
   "manifest_version": 3,
   
   "icons": {
