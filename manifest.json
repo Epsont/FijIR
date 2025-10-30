@@ -56,7 +56,8 @@
           "https://urbi.qa/*",
           "https://urbi.bh/*",
           "https://urbi.ma/*",
-		      "https://2gis.ge/*"
+		      "https://2gis.ge/*",
+          "https://2gis.tj/*"
         ],
         "js": [ "content.js" ]
     }
