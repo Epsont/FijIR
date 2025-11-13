@@ -132,7 +132,7 @@ function waitForElement(selector, callback) {
     observer.observe(document.body, { childList: true, subtree: true });
 }
 
-waitForElement("._1kswsxpb", (objLink) => {
+waitForElement("._on53ahr", (objLink) => {
     const linksPanel = document.createElement('div');
     linksPanel.className = "link-under-the-coord";
     linksPanel.style.cssText = "display:none; float:right; margin-right:15px;";
