@@ -16,108 +16,209 @@ const coordRegex = /(?<=\/|C|=)[0-9-]{1,3}\.[0-9]*/g
 
 // Имена кнопочек и тут происходит создание через функцию createButton(Название кнопочки)
 const fijiLink = createButton("link");
-const fijiSysCode = createButton("fiji-syscode");
-const irLink = createButton("inforussia-link");
-const youraLink = createButton("youra-link");
+const fijiSysCode = createButton("fiji-syscode"); // Было COOKERBALLING
+const irYouraGroup = createButtonGroup("ir-youra-group", 2); // Смежные кнопки IR и Youra
 const rosreestrLink = createButton("rosreestr-link");
 const yaLink = createButton("ya-link");
 
 // Функция main
 function fijIR(url) {
+    console.log('Processing URL:', url);
+    
     let coord = url.match(coordRegex);
     let syscodeGeo = url.match(geoRegex);
     let syscodeFirm = url.match(firmRegex);
+
+    console.log('Found coord:', coord);
+    console.log('Found syscodeGeo:', syscodeGeo);
+    console.log('Found syscodeFirm:', syscodeFirm);
 
     if (coord && coord.length > 4) {
         coord = coord.slice(-4);
     };
 
     if(coord){
-        // Массив для ссылок перехода в Fiji, Кадастр и Яндекс по координатам
-        linksCoord = [
-            `<a href="fiji://view/lon=${coord[0]}&lat=${coord[1]}" title="Перейти в Fiji по координатам"><img width="32" height="32" src="${fijiImage}"></a>`,
-            `<a href="https://yandex.ru/maps/?l=sat%2Cstv%2Csta&ll=${coord[0]}%2C${coord[1]}&z=18" title="Перейти в Ya по координатам" target="_blank"><img width="32" height="32" src="${yaImage}"></a>`,
-            `<a href="https://кадастр.сайт/%D0%BA%D0%B0%D0%B4%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B2%D0%B0%D1%8F_%D0%BA%D0%B0%D1%80%D1%82%D0%B0#ct=${coord[1]}&cg=${coord[0]}&zoom=17&layer=dgis" target="_blank" title="Перейти на rosreest-docs"><img width="32" height="32" src="https://xn--80aalw7afh.xn--80aswg/favicon.ico"></a>`
-            
-        ];
+    // Массив для ссылок перехода в Fiji, Кадастр и Яндекс по координатам
+    linksCoord = [
+        `<a href="fiji://view/lon=${coord[0]}&lat=${coord[1]}" title="Перейти в Fiji по координатам"><img width="32" height="32" src="${fijiImage}"></a>`,
+        `<a href="https://yandex.ru/maps/?l=sat%2Cstv%2Csta&ll=${coord[0]}%2C${coord[1]}&z=18" title="Перейти в Ya по координатам" target="_blank"><img width="32" height="32" src="${yaImage}"></a>`,
+        `<a href="https://кадастр.сайт/%D0%BA%D0%B0%D0%B4%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B2%D0%B0%D1%8F_%D0%BA%D0%B0%D1%80%D1%82%D0%B0#ct=${coord[1]}&cg=${coord[0]}&zoom=17&layer=dgis" target="_blank" title="Перейти на rosreest-docs"><img width="32" height="32" src="https://xn--80aalw7afh.xn--80aswg/favicon.ico"></a>`
+    ];
 
-        let moveToFiji = linksCoord[0];
-        let moveToYa = linksCoord[1];
-        let moveToRosreestr =  linksCoord[2];
-        
-        fijiLink.innerHTML = moveToFiji;
-        yaLink.innerHTML = moveToYa;
-        rosreestrLink.innerHTML = moveToRosreestr;
+    let moveToFiji = linksCoord[0];
+    let moveToYa = linksCoord[1];
+    let moveToRosreestr =  linksCoord[2];
+    
+    fijiLink.innerHTML = moveToFiji;
+    yaLink.innerHTML = moveToYa;
+    rosreestrLink.innerHTML = moveToRosreestr;
+
+    // Стили для кнопки Fiji
+    const fijiLinkAnchor = fijiLink.querySelector('a');
+    if (fijiLinkAnchor) {
+        fijiLinkAnchor.style.cssText = `
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 100%; 
+            height: 100%; 
+            text-decoration: none;
+        `;
+    }
+    const fijiImg = fijiLink.querySelector('img');
+    if (fijiImg) {
+        fijiImg.style.cssText = `
+            width: 32px; 
+            height: 32px; 
+            display: block;
+        `;
     }
 
-    if (syscodeGeo) {
-        // Массив для ссылок перехода в Fiji по Сискоду
-        linksSyscodeGeo = [
-            `<a href="fiji://editBySysCode/${syscodeGeo}" title="Перейти в Fiji по сискоду"><svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32"><defs><image  width="26" height="32" id="img1" href="${geoImage}"/></defs><use id="Background" href="#img1" x="3" y="0"/></svg></a>`,
-            `<a href="fiji://editBySysCode/${syscodeGeo}" title="Перейти в Fiji по сискоду остановки"><svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32"><defs><image  width="31" height="27" id="img1" href="${platformImage}"/></defs><style></style><use id="Background" href="#img1" x="1" y="2"/></svg></a>`,
-            `<a href="fiji://editBySysCode/${syscodeGeo}" title="Перейти в Fiji по сискоду входа в метро"><svg width="32px" height="32px" viewBox="0 0 88 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="metro_red_88" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="metro/88/bounding" fill="#FF0000" stroke="#FFFFFF"><circle id="Oval" cx="44" cy="44" r="43.5"></circle></g><polygon id="Page-1" fill="#FFFFFF" points="57 17 44 42 31 17 15 61 28 61 34 44 44 64 54 44 60 61 73 61"></polygon></g></svg></a>`,
-            `<a href="fiji://editBySysCode/${syscodeGeo}" title="Перейти в Fiji по сискоду здания"><svg width="32px" height="32px" viewBox="0 0 60.031 60.031" id="home" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1 {fill: #78B93E;}.cls-1, .cls-2 {fill-rule: evenodd;}.cls-2 {fill: #00B2DD;}</style></defs><path class="cls-1" d="M81.16,124.809l17.421-17.433a2,2,0,0,1,2.83,0l17.421,17.433A4.015,4.015,0,0,1,120,127.642v18.365a4,4,0,0,1-4,4H106V138a4,4,0,0,0-4-4H98a4,4,0,0,0-4,4v12.012H83.99a4,4,0,0,1-4-4V127.642A4.01,4.01,0,0,1,81.16,124.809Z" data-name="home" id="home-2" transform="translate(-70 -89.969)"/><path class="cls-2" d="M128.837,122.807a4,4,0,0,1-5.659,0l-21.767-21.784a2,2,0,0,0-2.83,0L76.814,122.807a4,4,0,0,1-5.659-5.663L97.167,91.112a4,4,0,0,1,5.659,0l26.011,26.032A4.006,4.006,0,0,1,128.837,122.807Z" data-name="home" id="home-3" transform="translate(-70 -89.969)"/></svg></a>`,
-            `<a href="fiji://editBySysCode/${syscodeGeo[0]}" title="Перейти в Fiji по сискоду здания"><svg width="32px" height="32px" viewBox="0 0 60.031 60.031" id="home" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1 {fill: #78B93E;}.cls-1, .cls-2 {fill-rule: evenodd;}.cls-2 {fill: #00B2DD;}</style></defs><path class="cls-1" d="M81.16,124.809l17.421-17.433a2,2,0,0,1,2.83,0l17.421,17.433A4.015,4.015,0,0,1,120,127.642v18.365a4,4,0,0,1-4,4H106V138a4,4,0,0,0-4-4H98a4,4,0,0,0-4,4v12.012H83.99a4,4,0,0,1-4-4V127.642A4.01,4.01,0,0,1,81.16,124.809Z" data-name="home" id="home-2" transform="translate(-70 -89.969)"/><path class="cls-2" d="M128.837,122.807a4,4,0,0,1-5.659,0l-21.767-21.784a2,2,0,0,0-2.83,0L76.814,122.807a4,4,0,0,1-5.659-5.663L97.167,91.112a4,4,0,0,1,5.659,0l26.011,26.032A4.006,4.006,0,0,1,128.837,122.807Z" data-name="home" id="home-3" transform="translate(-70 -89.969)"/></svg></a><a href="fiji://editBySysCode/${syscodeGeo[1]}" title="Перейти в Fiji по сискоду"><svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32"><defs><image  width="26" height="32" id="img1" href=${geoImage}/></defs><use id="Background" href="#img1" x="3" y="0"/></svg></a>`,
-            `<a href="fiji://editBySysCode/${syscodeGeo[0]}" title="Перейти в Fiji по сискоду здания"><svg width="32px" height="32px" viewBox="0 0 60.031 60.031" id="home" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1 {fill: #78B93E;}.cls-1, .cls-2 {fill-rule: evenodd;}.cls-2 {fill: #00B2DD;}</style></defs><path class="cls-1" d="M81.16,124.809l17.421-17.433a2,2,0,0,1,2.83,0l17.421,17.433A4.015,4.015,0,0,1,120,127.642v18.365a4,4,0,0,1-4,4H106V138a4,4,0,0,0-4-4H98a4,4,0,0,0-4,4v12.012H83.99a4,4,0,0,1-4-4V127.642A4.01,4.01,0,0,1,81.16,124.809Z" data-name="home" id="home-2" transform="translate(-70 -89.969)"/><path class="cls-2" d="M128.837,122.807a4,4,0,0,1-5.659,0l-21.767-21.784a2,2,0,0,0-2.83,0L76.814,122.807a4,4,0,0,1-5.659-5.663L97.167,91.112a4,4,0,0,1,5.659,0l26.011,26.032A4.006,4.006,0,0,1,128.837,122.807Z" data-name="home" id="home-3" transform="translate(-70 -89.969)"/></svg></a><a href="fiji://editBySysCode/${syscodeGeo[1]}" title="Перейти в Fiji по сискоду остановки"><svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32"><defs><image  width="31" height="27" id="img1" href=${platformImage}/></defs><style></style><use id="Background" href="#img1" x="1" y="2"/></svg></a>`,
-            `<a href="fiji://editBySysCode/${syscodeGeo[0]}" title="Перейти в Fiji по сискоду здания"><svg width="32px" height="32px" viewBox="0 0 60.031 60.031" id="home" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1 {fill: #78B93E;}.cls-1, .cls-2 {fill-rule: evenodd;}.cls-2 {fill: #00B2DD;}</style></defs><path class="cls-1" d="M81.16,124.809l17.421-17.433a2,2,0,0,1,2.83,0l17.421,17.433A4.015,4.015,0,0,1,120,127.642v18.365a4,4,0,0,1-4,4H106V138a4,4,0,0,0-4-4H98a4,4,0,0,0-4,4v12.012H83.99a4,4,0,0,1-4-4V127.642A4.01,4.01,0,0,1,81.16,124.809Z" data-name="home" id="home-2" transform="translate(-70 -89.969)"/><path class="cls-2" d="M128.837,122.807a4,4,0,0,1-5.659,0l-21.767-21.784a2,2,0,0,0-2.83,0L76.814,122.807a4,4,0,0,1-5.659-5.663L97.167,91.112a4,4,0,0,1,5.659,0l26.011,26.032A4.006,4.006,0,0,1,128.837,122.807Z" data-name="home" id="home-3" transform="translate(-70 -89.969)"/></svg></a><a href="fiji://editBySysCode/${syscodeGeo[1]}" title="Перейти в Fiji по сискоду входа в метро"><svg width="32px" height="32px" viewBox="0 0 88 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="metro_red_88" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="metro/88/bounding" fill="#FF0000" stroke="#FFFFFF"><circle id="Oval" cx="44" cy="44" r="43.5"></circle></g><polygon id="Page-1" fill="#FFFFFF" points="57 17 44 42 31 17 15 61 28 61 34 44 44 64 54 44 60 61 73 61"></polygon></g></svg></a>`
-        ];
+    // Стили для кнопки Яндекс
+    const yaLinkAnchor = yaLink.querySelector('a');
+    if (yaLinkAnchor) {
+        yaLinkAnchor.style.cssText = `
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 100%; 
+            height: 100%; 
+            text-decoration: none;
+        `;
+    }
+    const yaImg = yaLink.querySelector('img');
+    if (yaImg) {
+        yaImg.style.cssText = `
+            width: 32px; 
+            height: 32px; 
+            display: block;
+        `;
+    }
 
-        let moveToFijiBySyscode;
-        if (url.match(/geo/g)) {
-            moveToFijiBySyscode = linksSyscodeGeo[0];;
+    // Стили для кнопки Росреестр
+    const rosreestrAnchor = rosreestrLink.querySelector('a');
+    if (rosreestrAnchor) {
+        rosreestrAnchor.style.cssText = `
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 100%; 
+            height: 100%; 
+            text-decoration: none;
+        `;
+    }
+    const rosreestrImg = rosreestrLink.querySelector('img');
+    if (rosreestrImg) {
+        rosreestrImg.style.cssText = `
+            width: 32px; 
+            height: 32px; 
+            display: block;
+        `;
+    }
+}
+
+if (syscodeGeo) {
+    // Массив для ссылок перехода в Fiji по Сискоду
+    linksSyscodeGeo = [
+        `<a href="fiji://editBySysCode/${syscodeGeo}" title="Перейти в Fiji по сискоду"><svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32"><defs><image  width="26" height="32" id="img1" href="${geoImage}"/></defs><use id="Background" href="#img1" x="3" y="0"/></svg></a>`,
+        `<a href="fiji://editBySysCode/${syscodeGeo}" title="Перейти в Fiji по сискоду остановки"><svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32"><defs><image  width="31" height="27" id="img1" href="${platformImage}"/></defs><style></style><use id="Background" href="#img1" x="1" y="2"/></svg></a>`,
+        `<a href="fiji://editBySysCode/${syscodeGeo}" title="Перейти в Fiji по сискоду входа в метро"><svg width="32px" height="32px" viewBox="0 0 88 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="metro_red_88" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="metro/88/bounding" fill="#FF0000" stroke="#FFFFFF"><circle id="Oval" cx="44" cy="44" r="43.5"></circle></g><polygon id="Page-1" fill="#FFFFFF" points="57 17 44 42 31 17 15 61 28 61 34 44 44 64 54 44 60 61 73 61"></polygon></g></svg></a>`,
+        `<a href="fiji://editBySysCode/${syscodeGeo}" title="Перейти в Fiji по сискоду здания"><svg width="32px" height="32px" viewBox="0 0 60.031 60.031" id="home" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1 {fill: #78B93E;}.cls-1, .cls-2 {fill-rule: evenodd;}.cls-2 {fill: #00B2DD;}</style></defs><path class="cls-1" d="M81.16,124.809l17.421-17.433a2,2,0,0,1,2.83,0l17.421,17.433A4.015,4.015,0,0,1,120,127.642v18.365a4,4,0,0,1-4,4H106V138a4,4,0,0,0-4-4H98a4,4,0,0,0-4,4v12.012H83.99a4,4,0,0,1-4-4V127.642A4.01,4.01,0,0,1,81.16,124.809Z" data-name="home" id="home-2" transform="translate(-70 -89.969)"/><path class="cls-2" d="M128.837,122.807a4,4,0,0,1-5.659,0l-21.767-21.784a2,2,0,0,0-2.83,0L76.814,122.807a4,4,0,0,1-5.659-5.663L97.167,91.112a4,4,0,0,1,5.659,0l26.011,26.032A4.006,4.006,0,0,1,128.837,122.807Z" data-name="home" id="home-3" transform="translate(-70 -89.969)"/></svg></a>`,
+        `<a href="fiji://editBySysCode/${syscodeGeo[0]}" title="Перейти в Fiji по сискоду здания"><svg width="32px" height="32px" viewBox="0 0 60.031 60.031" id="home" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1 {fill: #78B93E;}.cls-1, .cls-2 {fill-rule: evenodd;}.cls-2 {fill: #00B2DD;}</style></defs><path class="cls-1" d="M81.16,124.809l17.421-17.433a2,2,0,0,1,2.83,0l17.421,17.433A4.015,4.015,0,0,1,120,127.642v18.365a4,4,0,0,1-4,4H106V138a4,4,0,0,0-4-4H98a4,4,0,0,0-4,4v12.012H83.99a4,4,0,0,1-4-4V127.642A4.01,4.01,0,0,1,81.16,124.809Z" data-name="home" id="home-2" transform="translate(-70 -89.969)"/><path class="cls-2" d="M128.837,122.807a4,4,0,0,1-5.659,0l-21.767-21.784a2,2,0,0,0-2.83,0L76.814,122.807a4,4,0,0,1-5.659-5.663L97.167,91.112a4,4,0,0,1,5.659,0l26.011,26.032A4.006,4.006,0,0,1,128.837,122.807Z" data-name="home" id="home-3" transform="translate(-70 -89.969)"/></svg></a><a href="fiji://editBySysCode/${syscodeGeo[1]}" title="Перейти в Fiji по сискоду"><svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32"><defs><image  width="26" height="32" id="img1" href=${geoImage}/></defs><use id="Background" href="#img1" x="3" y="0"/></svg></a>`,
+        `<a href="fiji://editBySysCode/${syscodeGeo[0]}" title="Перейти в Fiji по сискоду здания"><svg width="32px" height="32px" viewBox="0 0 60.031 60.031" id="home" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1 {fill: #78B93E;}.cls-1, .cls-2 {fill-rule: evenodd;}.cls-2 {fill: #00B2DD;}</style></defs><path class="cls-1" d="M81.16,124.809l17.421-17.433a2,2,0,0,1,2.83,0l17.421,17.433A4.015,4.015,0,0,1,120,127.642v18.365a4,4,0,0,1-4,4H106V138a4,4,0,0,0-4-4H98a4,4,0,0,0-4,4v12.012H83.99a4,4,0,0,1-4-4V127.642A4.01,4.01,0,0,1,81.16,124.809Z" data-name="home" id="home-2" transform="translate(-70 -89.969)"/><path class="cls-2" d="M128.837,122.807a4,4,0,0,1-5.659,0l-21.767-21.784a2,2,0,0,0-2.83,0L76.814,122.807a4,4,0,0,1-5.659-5.663L97.167,91.112a4,4,0,0,1,5.659,0l26.011,26.032A4.006,4.006,0,0,1,128.837,122.807Z" data-name="home" id="home-3" transform="translate(-70 -89.969)"/></svg></a><a href="fiji://editBySysCode/${syscodeGeo[1]}" title="Перейти в Fiji по сискоду остановки"><svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32"><defs><image  width="31" height="27" id="img1" href=${platformImage}/></defs><style></style><use id="Background" href="#img1" x="1" y="2"/></svg></a>`,
+        `<a href="fiji://editBySysCode/${syscodeGeo[0]}" title="Перейти в Fiji по сискоду здания"><svg width="32px" height="32px" viewBox="0 0 60.031 60.031" id="home" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1 {fill: #78B93E;}.cls-1, .cls-2 {fill-rule: evenodd;}.cls-2 {fill: #00B2DD;}</style></defs><path class="cls-1" d="M81.16,124.809l17.421-17.433a2,2,0,0,1,2.83,0l17.421,17.433A4.015,4.015,0,0,1,120,127.642v18.365a4,4,0,0,1-4,4H106V138a4,4,0,0,0-4-4H98a4,4,0,0,0-4,4v12.012H83.99a4,4,0,0,1-4-4V127.642A4.01,4.01,0,0,1,81.16,124.809Z" data-name="home" id="home-2" transform="translate(-70 -89.969)"/><path class="cls-2" d="M128.837,122.807a4,4,0,0,1-5.659,0l-21.767-21.784a2,2,0,0,0-2.83,0L76.814,122.807a4,4,0,0,1-5.659-5.663L97.167,91.112a4,4,0,0,1,5.659,0l26.011,26.032A4.006,4.006,0,0,1,128.837,122.807Z" data-name="home" id="home-3" transform="translate(-70 -89.969)"/></svg></a><a href="fiji://editBySysCode/${syscodeGeo[1]}" title="Перейти в Fiji по сискоду входа в метро"><svg width="32px" height="32px" viewBox="0 0 88 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="metro_red_88" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="metro/88/bounding" fill="#FF0000" stroke="#FFFFFF"><circle id="Oval" cx="44" cy="44" r="43.5"></circle></g><polygon id="Page-1" fill="#FFFFFF" points="57 17 44 42 31 17 15 61 28 61 34 44 44 64 54 44 60 61 73 61"></polygon></g></svg></a>`
+    ];
+
+    let moveToFijiBySyscode;
+    if (url.match(/geo/g)) {
+        moveToFijiBySyscode = linksSyscodeGeo[0];;
+    };
+    if ((url.match(/platform/g)) || (url.match(/station/g))) {
+        moveToFijiBySyscode = linksSyscodeGeo[1];
+    };
+    if (url.match(/stationEntrance/g)) {
+        moveToFijiBySyscode = linksSyscodeGeo[2];
+    };
+    if (url.match(/inside\//g)) {
+        moveToFijiBySyscode = linksSyscodeGeo[3];
+        if (url.match(/geo/g) && syscodeGeo[0] != syscodeGeo[1]) {
+            moveToFijiBySyscode = linksSyscodeGeo[4];
         };
-        if ((url.match(/platform/g)) || (url.match(/station/g))) {
-            moveToFijiBySyscode = linksSyscodeGeo[1];
+        if (url.match(/platform/g)) {
+            moveToFijiBySyscode = linksSyscodeGeo[5];
         };
         if (url.match(/stationEntrance/g)) {
-            moveToFijiBySyscode = linksSyscodeGeo[2];
+            moveToFijiBySyscode = linksSyscodeGeo[6];
         };
-        if (url.match(/inside\//g)) {
-            moveToFijiBySyscode = linksSyscodeGeo[3];
-            if (url.match(/geo/g) && syscodeGeo[0] != syscodeGeo[1]) {
-                moveToFijiBySyscode = linksSyscodeGeo[4];
-            };
-            if (url.match(/platform/g)) {
-                moveToFijiBySyscode = linksSyscodeGeo[5];
-            };
-            if (url.match(/stationEntrance/g)) {
-                moveToFijiBySyscode = linksSyscodeGeo[6];
-            };
-        };
-        fijiSysCode.innerHTML = moveToFijiBySyscode;
+    };
+    fijiSysCode.innerHTML = moveToFijiBySyscode;
+
+    // Стили для кнопки Fiji по сискоду
+    const fijiSysCodeAnchor = fijiSysCode.querySelector('a');
+    if (fijiSysCodeAnchor) {
+        fijiSysCodeAnchor.style.cssText = `
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 100%; 
+            height: 100%; 
+            text-decoration: none;
+        `;
     }
+    const fijiSysCodeSvg = fijiSysCode.querySelector('svg');
+    if (fijiSysCodeSvg) {
+        fijiSysCodeSvg.style.cssText = `
+            width: 32px; 
+            height: 32px; 
+            display: block;
+        `;
+    }
+}
     
     if (syscodeFirm) {
-        // Массив для ссылок перехода в IR и YouRa
-        linksSyscodeFirm = [
-            `<a href="dgis://editcard/id=${syscodeFirm}&sV=true" title="Перейти в IR"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="body_1" width="32" height="32"><g transform="matrix(1 0 0 1 0 0)"><image  x="0" y="0" xlink:href="${infoRussiaImage}" preserveAspectRatio="none" width="32" height="32"/></g></svg></a>`,
-            `<a href="https://youra.2gis.ru/card/${syscodeFirm}" title="Перейти в YouRa" target="_blank"><img width="32" height="32" src="${youraImage}"></a>`
-        ];
-
-        let moveToInforussia = linksSyscodeFirm[0];
-        let moveToYouRa = linksSyscodeFirm[1];
-        irLink.innerHTML = moveToInforussia;
-        youraLink.innerHTML = moveToYouRa;
-    };
+    console.log('syscodeFirm found:', syscodeFirm);
+    // Массив для ссылок перехода в IR и YouRa
+    linksSyscodeFirm = [
+        `<a href="dgis://editcard/id=${syscodeFirm}&sV=true" title="Перейти в IR"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="body_1" width="32" height="32"><g transform="matrix(1 0 0 1 0 0)"><image  x="0" y="0" xlink:href="${infoRussiaImage}" preserveAspectRatio="none" width="32" height="32"/></g></svg></a>`,
+        `<a href="https://youra.2gis.ru/card/${syscodeFirm}" title="Перейти в YouRa" target="_blank"><img width="32" height="32" src="${youraImage}"></a>`
+    ];
+    
+    console.log('Links array:', linksSyscodeFirm);
+    
+    // Заполняем группу IR и Youra
+    updateButtonGroup(irYouraGroup, linksSyscodeFirm);
+    
+};
 
     const visible = [];
     if (coord) visible.push('link', 'ya-link', 'rosreestr-link');
     if (syscodeGeo) visible.push('fiji-syscode');
-    if (syscodeFirm) visible.push('inforussia-link', 'youra-link');
+    if (syscodeFirm) visible.push('ir-youra-group');
+
+    console.log('Will show buttons:', visible);
 
     showButtons(visible);
 }
 
 // Показ кнопочек
 function showButtons(visibleClasses) {
-    const allButtons = ['link', 'ya-link', 'rosreestr-link', 'fiji-syscode', 'inforussia-link', 'youra-link'];
+    const allButtons = ['link', 'ya-link', 'rosreestr-link', 'fiji-syscode', 'ir-youra-group'];
     let hasVisible = false;
 
     allButtons.forEach(className => {
         const btn = document.querySelector('.' + className);
         if (btn) {
-            btn.style.display = visibleClasses.includes(className) ? 'block' : 'none';
-            if (visibleClasses.includes(className)) hasVisible = true;
+            const shouldShow = visibleClasses.includes(className);
+            btn.style.display = shouldShow ? 'flex' : 'none'; // Используем flex для групп
+            if (shouldShow) hasVisible = true;
+            
+            // Для групп кнопок убедимся, что все дочерние элементы видны
+            if (shouldShow && className === 'ir-youra-group') {
+                const buttons = btn.children;
+                for (let i = 0; i < buttons.length; i++) {
+                    buttons[i].style.display = 'flex';
+                }
+            }
         }
     });
 
@@ -126,7 +227,15 @@ function showButtons(visibleClasses) {
         panel.style.display = hasVisible ? 'flex' : 'none';
         panel.style.float = 'right';
         panel.style.marginRight = hasVisible ? '12px' : '';
+        
+        // Принудительно показываем панель, если есть видимые кнопки
+        if (hasVisible) {
+            panel.style.display = 'flex';
+        }
     }
+    
+    console.log('Visible buttons:', visibleClasses);
+    console.log('Panel visible:', hasVisible);
 }
 
 // Создание панели для кнопочек
@@ -148,18 +257,116 @@ waitForElement('button[aria-label="Пробки"]', (trafficButton) => {
     linksPanel.className = "link-under-the-coord";
     linksPanel.style.cssText = "display:none; float:right; margin-right:15px;";
     objLink.append(linksPanel);
-    linksPanel.append(fijiLink, yaLink, rosreestrLink, fijiSysCode, irLink, youraLink);
+    linksPanel.append(fijiLink, yaLink, rosreestrLink, fijiSysCode, irYouraGroup);
 });
 
 // Создание самих кнопочек
 function createButton(className) {
     const button = document.createElement('div');
     button.className = className;
-    button.style.cssText = `width:40px;height:40px;border:#00BFFF;overflow:hidden;padding:4px;margin-left:2px;margin-right:2px;border-radius:4px;box-shadow:0 1px 3px rgba(38,38,38,0.5);box-sizing:border-box;background:#ffffff;color:#262626;float:left;`;
+    button.style.cssText = `
+        width: 40px;
+        height: 40px;
+        border: none; /* Убираем обводку */
+        overflow: hidden;
+        padding: 0;
+        margin-left: 2px;
+        margin-right: 2px;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(38,38,38,0.5);
+        box-sizing: border-box;
+        background: #ffffff;
+        color: #262626;
+        float: left;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    `;
     button.onmouseover = () => button.style.backgroundColor = '#F0F8FF';
     button.onmouseout = () => button.style.backgroundColor = 'white';
 
     return button;
+}
+
+// Создание группы смежных кнопок - ОБНОВЛЕННАЯ ВЕРСИЯ
+function createButtonGroup(className, count) {
+    const group = document.createElement('div');
+    group.className = className;
+    group.style.cssText = `
+        display: flex; 
+        width: ${40 * count}px; 
+        height: 40px; 
+        border: none; /* Убираем обводку */
+        overflow: hidden; 
+        margin-left: 2px; 
+        margin-right: 2px; 
+        border-radius: 4px; 
+        box-shadow: 0 1px 3px rgba(38,38,38,0.5); 
+        box-sizing: border-box; 
+        background: #ffffff; 
+        color: #262626; 
+        float: left;
+        align-items: center;
+    `;
+    group.onmouseover = () => group.style.backgroundColor = '#F0F8FF';
+    group.onmouseout = () => group.style.backgroundColor = 'white';
+    
+    for (let i = 0; i < count; i++) {
+        const button = document.createElement('div');
+        button.style.cssText = `
+            width: 40px; 
+            height: 40px; 
+            padding: 0;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            overflow: hidden;
+            border: none; /* Убираем обводку */
+            background: transparent;
+        `;
+        group.appendChild(button);
+    }
+    
+    return group;
+}
+
+// Обновление содержимого группы кнопок - ОБНОВЛЕННАЯ ВЕРСИЯ
+function updateButtonGroup(group, links) {
+    console.log('Updating button group with links:', links);
+    
+    const buttons = group.children;
+    for (let i = 0; i < buttons.length && i < links.length; i++) {
+        buttons[i].innerHTML = links[i];
+        
+        // Находим ссылку внутри и применяем стили
+        const link = buttons[i].querySelector('a');
+        if (link) {
+            link.style.cssText = `
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                width: 100%; 
+                height: 100%; 
+                text-decoration: none;
+                padding: 0;
+                border: none;
+            `;
+        }
+        
+        // Находим изображение/иконку внутри ссылки
+        const img = buttons[i].querySelector('img, svg');
+        if (img) {
+            img.style.cssText = `
+                width: 32px; 
+                height: 32px; 
+                display: block;
+                margin: 0;
+                border: none;
+            `;
+        }
+    }
+    
+    group.style.display = 'flex';
 }
 
 // Прослушка обновления ссылки
