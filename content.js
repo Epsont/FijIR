@@ -8,6 +8,7 @@ const geoImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAgCAMAAAA7
 const platformImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAbCAMAAACz4aQdAAAAAXNSR0IB2cksfwAAAQVQTFRFAAAAtNZXqtBAqdA9qdA+i8JCfLtEfLtDgb5KqtBAp887p846p846p886icE+ebpAebpAerpAe7pCgL1Jq9FEqM88ps44h8A8eLk+ebk/fbtFqM88ps44ebk/f71Iqc8+ps45ebpAgr9Np887eLk/fbxFp846e7pCps45erpAeLk+stVT36JV7opN4ZtOl8lWisNY54pO6olO541RisNY9opX9YNO9YNO9YNO9YVRDrbfBLPdB7TeCrXeALLdA7PdDLbfArPdAbLdArPdArPdAbLdArLdBbTeBLPeDbbfAbLdArPe9opX9YNO9YNOAbLdALLdBLPeDbbfAbLdArPe9YNO9YVRCtScHAAAAFd0Uk5TAAMbKSsrKyQQQKDg/P////LJcRQJiv///+JCh/3qKUjzwgWm+C7lZf5+gBtP/1kbG8v/wQ07/0XFujTQnED/vyyx/9i4+diFgBXqgB2AI4CAQAt1QGJdC6r2awAAALpJREFUeJztzsUagmAQheGxuxWxuwsLGwU7sPX+L0X0+UFFYeXSd3MW32IGgKNQqtSIRovo9MAzGE1mC2K1IXaH0/Wobg/2wos/+fz3HghKdTwUBohEMcmOx+KQwGR6MgVpuY5nICvbc4DJ9jwUiqVSuSCoEIJqrU40AJok2YJv2mTnPv/+g97tifTf+4ASGb73Ec0wYxqZTJnZXHyfoRb84eWKWn/8J9k3LLvlZrc/8P142p+5ubBXgBuGy0hno1wzVAAAAABJRU5ErkJggg=="
 const infoRussiaImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAwFBMVEUAAADh4eHT09PPz8+9vb3Q0NDQ0NDq6+vu7u/Nzc3Q0NDKysrAwMDa2trQ0NDQ0NDq6urW1tbPz8/k5OTe3t7X2drBwcHa2trHx8fT09Pc3Nzl5eXX19fS0tLc3Nza2tr////+/v78/Pzy8/T39/d0hZCczgXZ3d9ofIi/xsizvsHw8PGrtLj5+fqNnqjGztFmc3tIVl1SYWng4+WirLFebXR+jpfX6KeFlJ2y2jY8SlKXo6qOmJ/S6IzN5nvV38TT8TBtAAAAIHRSTlMA6LUmBh10/P0QlKYws1199cFs8dv6Sbk/hub2yZq7zMzSglAAAAG/SURBVHjabZLZeqJAEIULRHZREIwxyQwCPTT7jqgxef+3mtBsgeS/6f6qDodTBTAhHEWJNgxaEo8C/GS1Vfe8E1lW5PB7dbuCOYKm85Y5YvG6NnNZbzjSnrC4zfpb/8k2f2A/rae+Y/6CMyjWf+yxViR+6HtuV7A3XY5nbmgnd4RQE8dN7BMJz5L59D4fXyJc+25g23wSx0Wb9LRqDYK+H2Ncu0NCP2mP4BlAeO0MrBJjfB+HPVuk+CrAYU8KUYgRwthbrOPlAGJApCHyPz99hJPFMkSQyA4KlHxcrw8vrecriyRQian/fvn3xaVJjfnG/4JBBOH9oxU84iqZCww4EYFXdw6ocueCE9BRe+Fw+LheL2FeO3OB2oc0varx/SZP3cUHk2DLdVIP5VmGFn2T34JMDSOHeV6YCygZGBKiW1YetvfIK92hRDMACjcm8lLkcUGZ3dK+xikAIKhT8OKeplV2u2WdRaSSP0Z5OZsjgeGVVfZOnjnvj9DCsDtzBuc63clCDzvEWIzIAIF4WMu2tWMZmFB0+zzr27oCM1YiFYwulk2JK1giazS144OA31E0K8NvMPJBe3vTDvL3l/8HHPJn62dntSAAAAAASUVORK5CYII="
 const yaImage = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIgMWE5LjAwMiA5LjAwMiAwIDAgMC02LjM2NiAxNS4zNjJjMS42MyAxLjYzIDUuNDY2IDMuOTg4IDUuNjkzIDYuNDY1LjAzNC4zNy4zMDMuNjczLjY3My42NzMuMzcgMCAuNjQtLjMwMy42NzMtLjY3My4yMjctMi40NzcgNC4wNi00LjgzMSA1LjY4OS02LjQ2QTkuMDAyIDkuMDAyIDAgMCAwIDEyIDF6IiBmaWxsPSIjRjQzIj48L3BhdGg+PHBhdGggZD0iTTEyIDEzLjA3OWEzLjA3OSAzLjA3OSAwIDEgMSAwLTYuMTU4IDMuMDc5IDMuMDc5IDAgMCAxIDAgNi4xNTh6IiBmaWxsPSIjZmZmIj48L3BhdGg+PC9zdmc+"
+const yaMapImage = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIgMWE5LjAwMiA5LjAwMiAwIDAgMC02LjM2NiAxNS4zNjJjMS42MyAxLjYzIDUuNDY2IDMuOTg4IDUuNjkzIDYuNDY1LjAzNC4zNy4zMDMuNjczLjY3My42NzMuMzcgMCAuNjQtLjMwMy42NzMtLjY3My4yMjctMi40NzcgNC4wNi00LjgzMSA1LjY4OS02LjQ2QTkuMDAyIDkuMDAyIDAgMCAwIDEyIDF6IiBmaWxsPSIjRkNENzU5Ij48L3BhdGg+PHBhdGggZD0iTTEyIDEzLjA3OWEzLjA3OSAzLjA3OSAwIDEgMSAwLTYuMTU4IDMuMDc5IDMuMDc5IDAgMCAxIDAgNi4xNTh6IiBmaWxsPSIjZmZmIj48L3BhdGg+PC9zdmc+";
 
 // Регулярки для поиска сискодов и координат
 const firmRegex = /(?<=firm\/)[0-9]*/g
@@ -16,10 +17,12 @@ const coordRegex = /(?<=\/|C|=)[0-9-]{1,3}\.[0-9]*/g
 
 // Имена кнопочек и тут происходит создание через функцию createButton(Название кнопочки)
 const fijiLink = createButton("link");
-const fijiSysCode = createButton("fiji-syscode"); // Было COOKERBALLING
-const irYouraGroup = createButtonGroup("ir-youra-group", 2); // Смежные кнопки IR и Youra
+const fijiSysCode = createButton("fiji-syscode");
+const irYouraGroup = createButtonGroup("ir-youra-group"); // Смежные кнопки IR и Youra
 const rosreestrLink = createButton("rosreestr-link");
-const yaLink = createButton("ya-link");
+const yaLink = createYaGroup("ya-link"); // Смежные кнопки Ya и YaMap
+
+
 
 // Функция main
 function fijIR(url) {
@@ -38,19 +41,18 @@ function fijIR(url) {
     };
 
     if(coord){
-    // Массив для ссылок перехода в Fiji, Кадастр и Яндекс по координатам
+    // Массив для ссылок перехода в Fiji, Кадастр и Яндекс по координатам, Яндекс можно выпилить. Сейчас создаётся группа с раскрывающимся списком
     linksCoord = [
         `<a href="fiji://view/lon=${coord[0]}&lat=${coord[1]}" title="Перейти в Fiji по координатам"><img width="32" height="32" src="${fijiImage}"></a>`,
         `<a href="https://yandex.ru/maps/?l=sat%2Cstv%2Csta&ll=${coord[0]}%2C${coord[1]}&z=18" title="Перейти в Ya по координатам" target="_blank"><img width="32" height="32" src="${yaImage}"></a>`,
         `<a href="https://кадастр.сайт/%D0%BA%D0%B0%D0%B4%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B2%D0%B0%D1%8F_%D0%BA%D0%B0%D1%80%D1%82%D0%B0#ct=${coord[1]}&cg=${coord[0]}&zoom=17&layer=dgis" target="_blank" title="Перейти на rosreest-docs"><img width="32" height="32" src="https://xn--80aalw7afh.xn--80aswg/favicon.ico"></a>`
     ];
+    
 
     let moveToFiji = linksCoord[0];
-    let moveToYa = linksCoord[1];
     let moveToRosreestr =  linksCoord[2];
     
     fijiLink.innerHTML = moveToFiji;
-    yaLink.innerHTML = moveToYa;
     rosreestrLink.innerHTML = moveToRosreestr;
 
     // Стили для кнопки Fiji
@@ -76,6 +78,11 @@ function fijIR(url) {
 
     // Стили для кнопки Яндекс
     const yaLinkAnchor = yaLink.querySelector('a');
+    const yandexLinks = [
+        `<a href="https://n.maps.yandex.ru/#!/?z=18&ll=${coord[0]}%2C${coord[1]}&l=nk%23sat" title="Перейти в Народную карту по координатам" target="_blank"><img width="32" height="32" src="${yaMapImage}"></a>`,
+        `<a href="https://yandex.ru/maps/?l=sat%2Cstv%2Csta&ll=${coord[0]}%2C${coord[1]}&z=18" title="Перейти в Ya по координатам" target="_blank"><img width="32" height="32" src="${yaImage}"></a>`        
+    ];
+
     if (yaLinkAnchor) {
         yaLinkAnchor.style.cssText = `
             display: flex; 
@@ -87,6 +94,7 @@ function fijIR(url) {
         `;
     }
     const yaImg = yaLink.querySelector('img');
+
     if (yaImg) {
         yaImg.style.cssText = `
             width: 32px; 
@@ -94,6 +102,9 @@ function fijIR(url) {
             display: block;
         `;
     }
+
+    // Заполнение для группы Яндекс
+    updateYaGroup(yaLink, yandexLinks);
 
     // Стили для кнопки Росреестр
     const rosreestrAnchor = rosreestrLink.querySelector('a');
@@ -108,13 +119,14 @@ function fijIR(url) {
         `;
     }
     const rosreestrImg = rosreestrLink.querySelector('img');
+
     if (rosreestrImg) {
         rosreestrImg.style.cssText = `
             width: 32px; 
             height: 32px; 
             display: block;
         `;
-    }
+    }    
 }
 
 if (syscodeGeo) {
@@ -200,6 +212,8 @@ if (syscodeGeo) {
     showButtons(visible);
 }
 
+
+
 // Показ кнопочек
 function showButtons(visibleClasses) {
     const allButtons = ['link', 'ya-link', 'rosreestr-link', 'fiji-syscode', 'ir-youra-group'];
@@ -209,15 +223,65 @@ function showButtons(visibleClasses) {
         const btn = document.querySelector('.' + className);
         if (btn) {
             const shouldShow = visibleClasses.includes(className);
-            btn.style.display = shouldShow ? 'flex' : 'none'; // Используем flex для групп
+            btn.style.display = shouldShow ? 'flex' : 'none';
             if (shouldShow) hasVisible = true;
             
-            // Для групп кнопок убедимся, что все дочерние элементы видны
-            if (shouldShow && className === 'ir-youra-group') {
-                const buttons = btn.children;
-                for (let i = 0; i < buttons.length; i++) {
-                    buttons[i].style.display = 'flex';
+            // Обработка группы Яндекс
+            if (shouldShow && className === 'ya-link') {
+                // Показ основной кнопки
+                const mainButtonYa = btn.querySelector('.main-button-ya');
+                if (mainButtonYa) {
+                    mainButtonYa.style.display = 'flex';
+                    mainButtonYa.style.backgroundColor = 'transparent';
                 }
+                
+                // Скрываем выпадающую кнопку при повторном показе
+                const dropdownButtonYaMap = btn.querySelector('.dropdown-button-yamap');
+                const arrowButtonYa = btn.querySelector('.arrow-button-ya');
+                if (dropdownButtonYaMap) {
+                    dropdownButtonYaMap.style.display = 'none';
+                    dropdownButtonYaMap.style.height = '0';
+                    dropdownButtonYaMap.style.opacity = '0';
+                }
+                if (arrowButtonYa) {
+                    arrowButtonYa.style.display = 'none';
+                    arrowButtonYa.innerHTML = '▼';
+                    arrowButtonYa.style.top = '40px';
+                    arrowButtonYa.style.bottom = '84px';
+                    arrowButtonYa.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+                }
+                
+                // Сброс состояния
+                btn._isDropdownVisible = false;
+            }
+
+            // Обработка группы IR/Youra
+            if (shouldShow && className === 'ir-youra-group') {
+                // Показ основной кнопки
+                const mainButton = btn.querySelector('.main-button');
+                if (mainButton) {
+                    mainButton.style.display = 'flex';
+                    mainButton.style.backgroundColor = 'transparent';
+                }
+                
+                // Скрываем выпадающую кнопку при повторном показе
+                const dropdownButton = btn.querySelector('.dropdown-button');
+                const arrowButton = btn.querySelector('.arrow-button');
+                if (dropdownButton) {
+                    dropdownButton.style.display = 'none';
+                    dropdownButton.style.height = '0';
+                    dropdownButton.style.opacity = '0';
+                }
+                if (arrowButton) {
+                    arrowButton.style.display = 'none';
+                    arrowButton.innerHTML = '▼';
+                    arrowButton.style.top = '40px';
+                    arrowButton.style.bottom = '84px';
+                    arrowButton.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+                }
+                
+                // Сброс состояния
+                btn._isDropdownVisible = false;
             }
         }
     });
@@ -228,7 +292,7 @@ function showButtons(visibleClasses) {
         panel.style.float = 'right';
         panel.style.marginRight = hasVisible ? '12px' : '';
         
-        // Принудительно показываем панель, если есть видимые кнопки
+        // Принудительный показ панели, если есть видимые кнопки
         if (hasVisible) {
             panel.style.display = 'flex';
         }
@@ -237,6 +301,8 @@ function showButtons(visibleClasses) {
     console.log('Visible buttons:', visibleClasses);
     console.log('Panel visible:', hasVisible);
 }
+
+
 
 // Создание панели для кнопочек
 function waitForElement(selector, callback) {
@@ -250,6 +316,8 @@ function waitForElement(selector, callback) {
     observer.observe(document.body, { childList: true, subtree: true });
 }
 
+
+
 // Теперь тут привязываемся не к классу контейнера, а к пробкам и далее на несколько контейнеров выше. Кажется что пробки будут всегда
 waitForElement('button[aria-label="Пробки"]', (trafficButton) => {
 	const objLink = trafficButton?.parentElement?.parentElement?.parentElement || null;
@@ -260,6 +328,8 @@ waitForElement('button[aria-label="Пробки"]', (trafficButton) => {
     linksPanel.append(fijiLink, yaLink, rosreestrLink, fijiSysCode, irYouraGroup);
 });
 
+
+
 // Создание самих кнопочек
 function createButton(className) {
     const button = document.createElement('div');
@@ -267,7 +337,7 @@ function createButton(className) {
     button.style.cssText = `
         width: 40px;
         height: 40px;
-        border: none; /* Убираем обводку */
+        border: none;
         overflow: hidden;
         padding: 0;
         margin-left: 2px;
@@ -288,16 +358,18 @@ function createButton(className) {
     return button;
 }
 
-// Создание группы смежных кнопок - ОБНОВЛЕННАЯ ВЕРСИЯ
-function createButtonGroup(className, count) {
+
+
+// Создание выпадающей группы кнопок Ya/YaMap
+function createYaGroup(className) {
     const group = document.createElement('div');
     group.className = className;
     group.style.cssText = `
         display: flex; 
-        width: ${40 * count}px; 
+        width: 40px; 
         height: 40px; 
-        border: none; /* Убираем обводку */
-        overflow: hidden; 
+        border: none;
+        overflow: visible;
         margin-left: 2px; 
         margin-right: 2px; 
         border-radius: 4px; 
@@ -307,41 +379,227 @@ function createButtonGroup(className, count) {
         color: #262626; 
         float: left;
         align-items: center;
+        justify-content: center;
+        position: relative;
     `;
-    group.onmouseover = () => group.style.backgroundColor = '#F0F8FF';
-    group.onmouseout = () => group.style.backgroundColor = 'white';
     
-    for (let i = 0; i < count; i++) {
-        const button = document.createElement('div');
-        button.style.cssText = `
-            width: 40px; 
-            height: 40px; 
-            padding: 0;
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            overflow: hidden;
-            border: none; /* Убираем обводку */
-            background: transparent;
-        `;
-        group.appendChild(button);
-    }
+    // Основная кнопка Ya 
+    const mainButtonYa = document.createElement('div');
+    mainButtonYa.className = 'main-button-ya';
+    mainButtonYa.style.cssText = `
+        width: 40px; 
+        height: 40px; 
+        padding: 0;
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        border-radius: 4px;
+        overflow: hidden;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    `;
+    
+    // Кнопка-стрелочка
+    const arrowButtonYa = document.createElement('div');
+    arrowButtonYa.className = 'arrow-button-ya';
+    arrowButtonYa.style.cssText = `
+        position: absolute;
+        top: 40px;
+        bottom: 40px;
+        width: 38px;
+        height: 15px;
+        background: #ffffff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 30;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        transition: all 0.2s ease;
+        -moz-border-radius:0px 0px 45px 45px;
+        -webkit-border-radius:0px 0px 45px 45px;
+    `;
+    arrowButtonYa.innerHTML = '▼';
+    arrowButtonYa.style.fontSize = '8px';
+    arrowButtonYa.style.lineHeight = '8px';
+    
+    // Выпадающая кнопка YaMap
+    const dropdownButtonYaMap = document.createElement('div');
+    dropdownButtonYaMap.className = 'dropdown-button-yamap';
+    dropdownButtonYaMap.style.cssText = `
+        position: absolute;
+        top: 45px;
+        width: 40px;
+        height: 0; /* Начинаем с высоты 0 для анимации */
+        background: #ffffff;
+        border: none;
+        border-radius: 4px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 20;
+        cursor: pointer;
+        overflow: hidden;
+        transition: height 0.3s ease, opacity 0.2s ease;
+        opacity: 0;
+    `;
+
+    // Добавление элементов в группу
+    group.appendChild(mainButtonYa);
+    group.appendChild(arrowButtonYa);
+    group.appendChild(dropdownButtonYaMap);
+    
+    // Обработчик событий
+    let isDropdownVisible = false;
+    
+    // Показ стрелочки при наведении на основную кнопку
+    mainButtonYa.addEventListener('mouseenter', () => {
+        arrowButtonYa.style.display = 'flex';
+        mainButtonYa.style.backgroundColor = '#F0F8FF';
+    });
+    
+    mainButtonYa.addEventListener('mouseleave', () => {
+        if (!isDropdownVisible) {
+            mainButtonYa.style.backgroundColor = 'transparent';
+        }
+    });
+    
+    // Скрытие стрелочки, если не наведено ни на основную кнопку, ни на стрелочку
+    group.addEventListener('mouseleave', () => {
+        if (!isDropdownVisible) {
+            arrowButtonYa.style.display = 'none';
+            mainButtonYa.style.backgroundColor = 'transparent';
+        }
+    });
+    
+    // Обработчик для стрелочки
+    arrowButtonYa.addEventListener('click', (e) => {
+        e.stopPropagation(); // Предотвращаем всплытие
+        isDropdownVisible = !isDropdownVisible;
+        
+        if (isDropdownVisible) {
+            // Ну это анимация
+            dropdownButtonYaMap.style.display = 'flex';
+            setTimeout(() => {
+                dropdownButtonYaMap.style.height = '40px';
+                dropdownButtonYaMap.style.opacity = '1';
+            }, 10);
+            
+            // Смена направления стрелочки
+            arrowButtonYa.innerHTML = '▲';
+            arrowButtonYa.style.top = '87px';
+            arrowButtonYa.style.bottom = '10px'; // Перемещаем стрелочку под выпадающую кнопку
+            arrowButtonYa.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+            
+            // Замена цвета кнопки при открытом состоянии
+            mainButtonYa.style.backgroundColor = '#F0F8FF';
+        } else {
+            // Скрытие, тоже с анимацией
+            dropdownButtonYaMap.style.height = '0';
+            dropdownButtonYaMap.style.opacity = '0';
+            setTimeout(() => {
+                if (!isDropdownVisible) {
+                    dropdownButtonYaMap.style.display = 'none';
+                }
+            }, 300);
+            
+            // Возврат стрелочки на место
+            arrowButtonYa.innerHTML = '▼';
+            arrowButtonYa.style.top = '40px';
+            arrowButtonYa.style.bottom = '10px';
+            arrowButtonYa.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+            
+            // Возврат цвета кнопки
+            if (!group.matches(':hover')) {
+                mainButtonYa.style.backgroundColor = 'transparent';
+            }
+        }
+        
+        // Показываем стрелочки при активном дропдауне
+        arrowButtonYa.style.display = 'flex';
+    });
+    
+    // Закрытие при клике на выпадающую кнопку
+    dropdownButtonYaMap.addEventListener('click', () => {
+        // Закрытие меню после клика на выпадающую кнопку
+        setTimeout(() => {
+            isDropdownVisible = false;
+            dropdownButtonYaMap.style.height = '0';
+            dropdownButtonYaMap.style.opacity = '0';
+            setTimeout(() => {
+                dropdownButtonYaMap.style.display = 'none';
+            }, 300);
+            
+            arrowButtonYa.innerHTML = '▼';
+            arrowButtonYa.style.top = '40px';
+            arrowButtonYa.style.bottom = '10px';
+            arrowButtonYa.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+            
+            if (!group.matches(':hover')) {
+                arrowButtonYa.style.display = 'none';
+                mainButtonYa.style.backgroundColor = 'transparent';
+            }
+        }, 100);
+    });
+    
+    // Скрытие выпадающей кнопки при клике вне группы
+    document.addEventListener('click', (e) => {
+        if (!group.contains(e.target) && isDropdownVisible) {
+            isDropdownVisible = false;
+            dropdownButtonYaMap.style.height = '0';
+            dropdownButtonYaMap.style.opacity = '0';
+            setTimeout(() => {
+                dropdownButtonYaMap.style.display = 'none';
+            }, 300);
+            
+            arrowButtonYa.innerHTML = '▼';
+            arrowButtonYa.style.top = '40px';
+            arrowButtonYa.style.bottom = '10px';
+            arrowButtonYa.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+            
+            // Скрытие стрелочки, если курсор не над группой
+            if (!group.matches(':hover')) {
+                arrowButtonYa.style.display = 'none';
+                mainButtonYa.style.backgroundColor = 'transparent';
+            }
+        }
+    });
+    
+    // Обработчик наведения на стрелочку
+    arrowButtonYa.addEventListener('mouseenter', () => {
+        arrowButtonYa.style.backgroundColor = '#F0F8FF';
+    });
+    
+    arrowButtonYa.addEventListener('mouseleave', () => {
+        arrowButtonYa.style.backgroundColor = '#ffffff';
+    });
     
     return group;
 }
 
-// Обновление содержимого группы кнопок - ОБНОВЛЕННАЯ ВЕРСИЯ
-function updateButtonGroup(group, links) {
+
+
+// Обновление содержимого выпадающей группы кнопок Ya/YaMap
+function updateYaGroup(group, links) {
     console.log('Updating button group with links:', links);
     
-    const buttons = group.children;
-    for (let i = 0; i < buttons.length && i < links.length; i++) {
-        buttons[i].innerHTML = links[i];
+    const mainButtonYa = group.querySelector('.main-button-ya');
+    const dropdownButtonYaMap = group.querySelector('.dropdown-button-yamap');
+    const arrowButtonYa = group.querySelector('.arrow-button-ya');
+    
+    // основная кнопка - Ya, выпадающая - YaMap
+    if (links[1] && mainButtonYa) { 
+        mainButtonYa.innerHTML = links[1];
         
         // Находим ссылку внутри и применяем стили
-        const link = buttons[i].querySelector('a');
-        if (link) {
-            link.style.cssText = `
+        const mainLink = mainButtonYa.querySelector('a');
+        if (mainLink) {
+            mainLink.style.cssText = `
                 display: flex; 
                 align-items: center; 
                 justify-content: center; 
@@ -350,24 +608,477 @@ function updateButtonGroup(group, links) {
                 text-decoration: none;
                 padding: 0;
                 border: none;
+                transition: opacity 0.2s ease;
             `;
+            
+            mainLink.addEventListener('mouseenter', () => {
+                mainLink.style.opacity = '1';
+                mainLink.style.backgroundColor = '#F0F8FF';
+            });
+            
+            mainLink.addEventListener('mouseleave', () => {
+                mainLink.style.opacity = '1';
+                mainLink.style.backgroundColor = '#ffffff';
+            });
         }
         
         // Находим изображение/иконку внутри ссылки
-        const img = buttons[i].querySelector('img, svg');
-        if (img) {
-            img.style.cssText = `
+        const mainImg = mainButtonYa.querySelector('img, svg');
+        if (mainImg) {
+            mainImg.style.cssText = `
                 width: 32px; 
                 height: 32px; 
                 display: block;
                 margin: 0;
                 border: none;
+                transition: transform 0.2s ease;
             `;
+            
+            mainButtonYa.addEventListener('mouseenter', () => {
+                mainImg.style.transform = 'scale(1)';
+            });
+            
+            mainButtonYa.addEventListener('mouseleave', () => {
+                mainImg.style.transform = 'scale(1)';
+            });
         }
     }
     
+    if (links[0] && dropdownButtonYaMap) {
+        dropdownButtonYaMap.innerHTML = links[0];
+        
+        // Находим ссылку внутри и применяем стили
+        const dropdownLink = dropdownButtonYaMap.querySelector('a');
+        if (dropdownLink) {
+            dropdownLink.style.cssText = `
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                width: 100%; 
+                height: 100%; 
+                text-decoration: none;
+                padding: 0;
+                border: none;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+            
+            // Анимируем появление ссылки после появления контейнера
+            setTimeout(() => {
+                dropdownLink.style.opacity = '1';
+            }, 150);
+            
+            dropdownLink.addEventListener('mouseenter', () => {
+                dropdownLink.style.opacity = '1';
+                dropdownLink.style.backgroundColor = '#F0F8FF';
+            });
+            
+            dropdownLink.addEventListener('mouseleave', () => {
+                dropdownLink.style.opacity = '1';
+                dropdownLink.style.backgroundColor = '#ffffff';
+            });
+        }
+        
+        // Находим изображение/иконку внутри ссылки
+        const dropdownImg = dropdownButtonYaMap.querySelector('img, svg');
+        if (dropdownImg) {
+            dropdownImg.style.cssText = `
+                width: 32px; 
+                height: 32px; 
+                display: block;
+                margin: 0;
+                border: none;
+                transition: transform 0.2s ease;
+            `;
+            
+            dropdownButtonYaMap.addEventListener('mouseenter', () => {
+                dropdownImg.style.transform = 'scale(1)';
+            });
+            
+            dropdownButtonYaMap.addEventListener('mouseleave', () => {
+                dropdownImg.style.transform = 'scale(1)';
+            });
+        }
+    }
+    
+    // Сбрасываем состояние стрелочки при обновлении
+    if (arrowButtonYa) {
+        arrowButtonYa.style.top = '40px';
+        arrowButtonYa.style.bottom = '84px';
+        arrowButtonYa.innerHTML = '▼';
+        arrowButtonYa.style.display = 'none';
+    }
+    
+    // Сбрасываем состояние выпадающей кнопки
+    dropdownButtonYaMap.style.height = '0';
+    dropdownButtonYaMap.style.opacity = '0';
+    dropdownButtonYaMap.style.display = 'none';
+    
+    group._isDropdownVisible = false;
     group.style.display = 'flex';
 }
+
+
+
+// Создание выпадающей группы кнопок IR/Youra
+function createButtonGroup(className) {
+    const group = document.createElement('div');
+    group.className = className;
+    group.style.cssText = `
+        display: flex; 
+        width: 40px; 
+        height: 40px; 
+        border: none;
+        overflow: visible;
+        margin-left: 2px; 
+        margin-right: 2px; 
+        border-radius: 4px; 
+        box-shadow: 0 1px 3px rgba(38,38,38,0.5); 
+        box-sizing: border-box; 
+        background: #ffffff; 
+        color: #262626; 
+        float: left;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    `;
+    
+    // Основная кнопка Youra
+    const mainButton = document.createElement('div');
+    mainButton.className = 'main-button';
+    mainButton.style.cssText = `
+        width: 40px; 
+        height: 40px; 
+        padding: 0;
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        border-radius: 4px;
+        overflow: hidden;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    `;
+    
+    // Кнопка-стрелочка
+    const arrowButton = document.createElement('div');
+    arrowButton.className = 'arrow-button';
+    arrowButton.style.cssText = `
+        position: absolute;
+        top: 40px;
+        bottom: 40px;
+        width: 38px;
+        height: 15px;
+        background: #ffffff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 30;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        transition: all 0.2s ease;
+        -moz-border-radius:0px 0px 45px 45px;
+        -webkit-border-radius:0px 0px 45px 45px;
+    `;
+    arrowButton.innerHTML = '▼';
+    arrowButton.style.fontSize = '8px';
+    arrowButton.style.lineHeight = '8px';
+    
+    // Выпадающая кнопка IR
+    const dropdownButton = document.createElement('div');
+    dropdownButton.className = 'dropdown-button';
+    dropdownButton.style.cssText = `
+        position: absolute;
+        top: 45px;
+        width: 40px;
+        height: 0; /* Начинаем с высоты 0 для анимации */
+        background: #ffffff;
+        border: none;
+        border-radius: 4px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 20;
+        cursor: pointer;
+        overflow: hidden;
+        transition: height 0.3s ease, opacity 0.2s ease;
+        opacity: 0;
+    `;
+
+    // Добавление элементов в группу
+    group.appendChild(mainButton);
+    group.appendChild(arrowButton);
+    group.appendChild(dropdownButton);
+    
+    // Обработчик событий
+    let isDropdownVisible = false;
+    
+    // Показ стрелочки при наведении на основную кнопку
+    mainButton.addEventListener('mouseenter', () => {
+        arrowButton.style.display = 'flex';
+        mainButton.style.backgroundColor = '#F0F8FF';
+    });
+    
+    mainButton.addEventListener('mouseleave', () => {
+        if (!isDropdownVisible) {
+            mainButton.style.backgroundColor = 'transparent';
+        }
+    });
+    
+    // Скрытие стрелочки, если не наведено ни на основную кнопку, ни на стрелочку
+    group.addEventListener('mouseleave', () => {
+        if (!isDropdownVisible) {
+            arrowButton.style.display = 'none';
+            mainButton.style.backgroundColor = 'transparent';
+        }
+    });
+    
+    // Обработчик для стрелочки
+    arrowButton.addEventListener('click', (e) => {
+        e.stopPropagation(); // Предотвращаем всплытие
+        isDropdownVisible = !isDropdownVisible;
+        
+        if (isDropdownVisible) {
+            // Ну это анимация
+            dropdownButton.style.display = 'flex';
+            setTimeout(() => {
+                dropdownButton.style.height = '40px';
+                dropdownButton.style.opacity = '1';
+            }, 10);
+            
+            // Замена направления стрелочки
+            arrowButton.innerHTML = '▲';
+            arrowButton.style.top = '87px'; // Перемещаем стрелочку под выпадающую кнопку
+            arrowButton.style.bottom = '10px'; 
+            arrowButton.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+            
+            // Замена цвета кнопки при открытом состоянии
+            mainButton.style.backgroundColor = '#F0F8FF';
+        } else {
+            // Скрываем с анимацией
+            dropdownButton.style.height = '0';
+            dropdownButton.style.opacity = '0';
+            setTimeout(() => {
+                if (!isDropdownVisible) {
+                    dropdownButton.style.display = 'none';
+                }
+            }, 300);
+            
+            // Возврат стрелочки на место
+            arrowButton.innerHTML = '▼';
+            arrowButton.style.top = '40px';
+            arrowButton.style.bottom = '10px';
+            arrowButton.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+            
+            // Возврат цвета кнопки
+            if (!group.matches(':hover')) {
+                mainButton.style.backgroundColor = 'transparent';
+            }
+        }
+        
+        // Показ стрелочки при активном дропдауне
+        arrowButton.style.display = 'flex';
+    });
+    
+    // Закрытие при клике на выпадающую кнопку
+    dropdownButton.addEventListener('click', () => {
+        // Скрытие меню после клика на выпадающую кнопку
+        setTimeout(() => {
+            isDropdownVisible = false;
+            dropdownButton.style.height = '0';
+            dropdownButton.style.opacity = '0';
+            setTimeout(() => {
+                dropdownButton.style.display = 'none';
+            }, 300);
+            
+            arrowButton.innerHTML = '▼';
+            arrowButton.style.top = '40px';
+            arrowButton.style.bottom = '10px';
+            arrowButton.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+            
+            if (!group.matches(':hover')) {
+                arrowButton.style.display = 'none';
+                mainButton.style.backgroundColor = 'transparent';
+            }
+        }, 100);
+    });
+    
+    // Скрытие выпадающей кнопки при клике вне группы
+    document.addEventListener('click', (e) => {
+        if (!group.contains(e.target) && isDropdownVisible) {
+            isDropdownVisible = false;
+            dropdownButton.style.height = '0';
+            dropdownButton.style.opacity = '0';
+            setTimeout(() => {
+                dropdownButton.style.display = 'none';
+            }, 300);
+            
+            arrowButton.innerHTML = '▼';
+            arrowButton.style.top = '40px';
+            arrowButton.style.bottom = '10px';
+            arrowButton.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+            
+            // Скрытие стрелочки, если курсор не над группой
+            if (!group.matches(':hover')) {
+                arrowButton.style.display = 'none';
+                mainButton.style.backgroundColor = 'transparent';
+            }
+        }
+    });
+    
+    // Обработчик наведения на стрелочку
+    arrowButton.addEventListener('mouseenter', () => {
+        arrowButton.style.backgroundColor = '#F0F8FF';
+    });
+    
+    arrowButton.addEventListener('mouseleave', () => {
+        arrowButton.style.backgroundColor = '#ffffff';
+    });
+    
+    return group;
+}
+
+
+
+// Обновление содержимого выпадающей группы кнопок IR/Youra
+function updateButtonGroup(group, links) {
+    console.log('Updating button group with links:', links);
+    
+    const mainButton = group.querySelector('.main-button');
+    const dropdownButton = group.querySelector('.dropdown-button');
+    const arrowButton = group.querySelector('.arrow-button');
+    
+    // основная кнопка - Youra, выпадающая - IR
+    if (links[1] && mainButton) { 
+        mainButton.innerHTML = links[1];
+        
+        // Находим ссылку внутри и применяем стили
+        const mainLink = mainButton.querySelector('a');
+        if (mainLink) {
+            mainLink.style.cssText = `
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                width: 100%; 
+                height: 100%; 
+                text-decoration: none;
+                padding: 0;
+                border: none;
+                transition: opacity 0.2s ease;
+            `;
+            
+            mainLink.addEventListener('mouseenter', () => {
+                mainLink.style.opacity = '1';
+                mainLink.style.backgroundColor = '#F0F8FF';
+            });
+            
+            mainLink.addEventListener('mouseleave', () => {
+                mainLink.style.opacity = '1';
+                mainLink.style.backgroundColor = '#ffffff';
+            });
+        }
+        
+        // Находим изображение/иконку внутри ссылки
+        const mainImg = mainButton.querySelector('img, svg');
+        if (mainImg) {
+            mainImg.style.cssText = `
+                width: 32px; 
+                height: 32px; 
+                display: block;
+                margin: 0;
+                border: none;
+                transition: transform 0.2s ease;
+            `;
+            
+            mainButton.addEventListener('mouseenter', () => {
+                mainImg.style.transform = 'scale(1)';
+            });
+            
+            mainButton.addEventListener('mouseleave', () => {
+                mainImg.style.transform = 'scale(1)';
+            });
+        }
+    }
+    
+    if (links[0] && dropdownButton) { 
+        dropdownButton.innerHTML = links[0];
+        
+        // Находим ссылку внутри и применяем стили
+        const dropdownLink = dropdownButton.querySelector('a');
+        if (dropdownLink) {
+            dropdownLink.style.cssText = `
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                width: 100%; 
+                height: 100%; 
+                text-decoration: none;
+                padding: 0;
+                border: none;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+            
+            // Анимируем появление ссылки после появления контейнера
+            setTimeout(() => {
+                dropdownLink.style.opacity = '1';
+            }, 150);
+            
+            dropdownLink.addEventListener('mouseenter', () => {
+                dropdownLink.style.opacity = '1';
+                dropdownLink.style.backgroundColor = '#F0F8FF';
+            });
+            
+            dropdownLink.addEventListener('mouseleave', () => {
+                dropdownLink.style.opacity = '1';
+                dropdownLink.style.backgroundColor = '#ffffff';
+            });
+        }
+        
+        // Находим изображение/иконку внутри ссылки
+        const dropdownImg = dropdownButton.querySelector('img, svg');
+        if (dropdownImg) {
+            dropdownImg.style.cssText = `
+                width: 32px; 
+                height: 32px; 
+                display: block;
+                margin: 0;
+                border: none;
+                transition: transform 0.2s ease;
+            `;
+            
+            dropdownButton.addEventListener('mouseenter', () => {
+                dropdownImg.style.transform = 'scale(1)';
+            });
+            
+            dropdownButton.addEventListener('mouseleave', () => {
+                dropdownImg.style.transform = 'scale(1)';
+            });
+        }
+    }
+    
+    // Сброс состояния стрелочки при обновлении
+    if (arrowButton) {
+        arrowButton.style.top = '40px';
+        arrowButton.style.bottom = '84px';
+        arrowButton.innerHTML = '▼';
+        arrowButton.style.display = 'none';
+    }
+    
+    // Сброс состояния выпадающей кнопки
+    dropdownButton.style.height = '0';
+    dropdownButton.style.opacity = '0';
+    dropdownButton.style.display = 'none';
+    
+    group._isDropdownVisible = false;
+    group.style.display = 'flex';
+}
+
+
 
 // Прослушка обновления ссылки
 function hrefHandler() {
@@ -385,4 +1096,6 @@ function hrefHandler() {
 
     this.Check = setInterval(this.detect.bind(this), 500);
 }
+
+
 const hrefDetection = new hrefHandler();
