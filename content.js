@@ -305,27 +305,47 @@ function showButtons(visibleClasses) {
 
 
 // Создание панели для кнопочек
-function waitForElement(selector, callback) {
+function waitForElement(selectors, callback) {
+    // Поддерживаем как массив селекторов, так и строку для обратной совместимости
+    const selectorArray = Array.isArray(selectors) ? selectors : [selectors];
+    
     const observer = new MutationObserver(() => {
-        const element = document.querySelector(selector);
-        if (element) {
-            observer.disconnect();
-            callback(element);
+        for (const selector of selectorArray) {
+            const element = document.querySelector(selector);
+            if (element) {
+                observer.disconnect();
+                callback(element);
+                return;
+            }
         }
     });
+    
+    // Проверяем сразу при запуске (на случай если элемент уже есть)
+    for (const selector of selectorArray) {
+        const element = document.querySelector(selector);
+        if (element) {
+            callback(element);
+            return;
+        }
+    }
+    
     observer.observe(document.body, { childList: true, subtree: true });
 }
 
 
-
-// Теперь тут привязываемся не к классу контейнера, а к пробкам и далее на несколько контейнеров выше. Кажется что пробки будут всегда
-waitForElement('button[aria-label="Пробки"]', (trafficButton) => {
-	const objLink = trafficButton?.parentElement?.parentElement?.parentElement || null;
-    const linksPanel = document.createElement('div');
-    linksPanel.className = "link-under-the-coord";
-    linksPanel.style.cssText = "display:none; float:right; margin-right:15px;";
-    objLink.append(linksPanel);
-    linksPanel.append(fijiLink, yaLink, rosreestrLink, fijiSysCode, irYouraGroup);
+//Поиск элемента в котором содержатся пробки для привязки и размещения в несколькиз уровнях выше панели с кнопками
+waitForElement('a[href$="?traffic"]', (trafficLink) => {
+    const trafficButton = trafficLink.querySelector('button');
+    const container = trafficButton?.parentElement?.parentElement?.parentElement;
+    
+    if (container && !document.querySelector('.link-under-the-coord')) {
+        const linksPanel = document.createElement('div');
+        linksPanel.className = "link-under-the-coord";
+        linksPanel.style.cssText = "display:none; float:right; margin-right:12px;";
+        
+        linksPanel.append(fijiLink, yaLink, rosreestrLink, fijiSysCode, irYouraGroup);
+        container.append(linksPanel);
+    }
 });
 
 
